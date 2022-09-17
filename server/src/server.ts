@@ -3,7 +3,7 @@ import cors from 'cors'
 
 import { PrismaClient } from '@prisma/client'
 import { convertHourStringToMinutes } from './utils/convert-hour-string-to-minutes'
-import { convertMH } from './utils/convert-minutes-to-hours-string'
+import { convertmh } from './utils/convert-minutes-to-hours-string'
 
 
 
@@ -31,7 +31,7 @@ app.get('/games', async (request, response) => {
     }
 
   })
-  return response.json([games])
+  return response.json(games)
 })
 
 app.post('/games/:id/ads', async(request, response) => {
@@ -54,7 +54,7 @@ app.post('/games/:id/ads', async(request, response) => {
   })
 
 
-  return response.status(201).json([ad])
+  return response.status(201).json(ad)
 })
 
 
@@ -87,8 +87,8 @@ app.get('/games/:id/ads', async (request, response) => {
     return {
       ...ad,
       weekDays: ad.weekDays.split(','),
-      hourStart: convertMH(ad.hourStart),
-      hourEnd: convertMH(ad.hourEnd),
+      hourStart: convertmh(ad.hourStart),
+      hourEnd: convertmh(ad.hourEnd),
 
   }
 }))
